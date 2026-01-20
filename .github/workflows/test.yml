@@ -1,0 +1,252 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  NODE_VERSION: '20'
+  RUST_VERSION: 'stable'
+
+jobs:
+  # ==============================================================================
+  # Rust Tests
+  # ==============================================================================
+  rust-tests:
+    name: Rust Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ env.RUST_VERSION }}
+          components: clippy, rustfmt
+      
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            rust/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('rust/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+      
+      - name: Check formatting
+        working-directory: rust
+        run: cargo fmt -- --check
+      
+      - name: Run clippy
+        working-directory: rust
+        run: cargo clippy -- -D warnings
+      
+      - name: Run tests
+        working-directory: rust
+        run: cargo test --release
+      
+      - name: Build release binary
+        working-directory: rust
+        run: cargo build --release
+      
+      - name: Upload Rust binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: solana-vanity-rust
+          path: rust/target/release/solana-vanity
+
+  # ==============================================================================
+  # TypeScript Tests
+  # ==============================================================================
+  typescript-tests:
+    name: TypeScript Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: typescript/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: typescript
+        run: npm ci
+      
+      - name: Run linting
+        working-directory: typescript
+        run: npm run lint || true
+      
+      - name: Run tests
+        working-directory: typescript
+        run: npm test
+      
+      - name: Build
+        working-directory: typescript
+        run: npm run build
+      
+      - name: Upload TypeScript dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: solana-vanity-typescript
+          path: typescript/dist/
+
+  # ==============================================================================
+  # Security Audit
+  # ==============================================================================
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      
+      - name: Install cargo-audit
+        run: cargo install cargo-audit
+      
+      - name: Rust security audit
+        working-directory: rust
+        run: cargo audit
+        continue-on-error: true
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Install TypeScript dependencies
+        working-directory: typescript
+        run: npm ci
+      
+      - name: TypeScript security audit
+        working-directory: typescript
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+  # ==============================================================================
+  # Integration Tests
+  # ==============================================================================
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: [rust-tests, typescript-tests]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Solana CLI
+        run: |
+          sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
+      
+      - name: Verify Solana installation
+        run: solana-keygen --version
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Download Rust binary
+        uses: actions/download-artifact@v4
+        with:
+          name: solana-vanity-rust
+          path: rust/target/release/
+      
+      - name: Make Rust binary executable
+        run: chmod +x rust/target/release/solana-vanity
+      
+      - name: Download TypeScript dist
+        uses: actions/download-artifact@v4
+        with:
+          name: solana-vanity-typescript
+          path: typescript/dist/
+      
+      - name: Install TypeScript dependencies
+        working-directory: typescript
+        run: npm ci --production
+      
+      - name: Make test scripts executable
+        run: |
+          chmod +x tests/integration/*.sh
+          chmod +x tools/*.sh
+      
+      - name: Run output compatibility test
+        run: ./tests/integration/test_output_compatibility.sh
+      
+      - name: Run keypair validity test
+        run: ./tests/integration/test_keypair_validity.sh
+      
+      - name: Run security properties test
+        run: ./tests/integration/test_security_properties.sh
+
+  # ==============================================================================
+  # Fuzz Tests
+  # ==============================================================================
+  fuzz-tests:
+    name: Fuzz Tests
+    runs-on: ubuntu-latest
+    needs: [rust-tests, typescript-tests]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Download Rust binary
+        uses: actions/download-artifact@v4
+        with:
+          name: solana-vanity-rust
+          path: rust/target/release/
+      
+      - name: Make Rust binary executable
+        run: chmod +x rust/target/release/solana-vanity
+      
+      - name: Download TypeScript dist
+        uses: actions/download-artifact@v4
+        with:
+          name: solana-vanity-typescript
+          path: typescript/dist/
+      
+      - name: Install TypeScript dependencies
+        working-directory: typescript
+        run: npm ci --production
+      
+      - name: Run input validation fuzz
+        run: python3 tests/fuzz/fuzz_validation.py
+      
+      - name: Run file operations fuzz
+        run: python3 tests/fuzz/fuzz_file_operations.py
+
+  # ==============================================================================
+  # All Tests Summary
+  # ==============================================================================
+  all-tests:
+    name: All Tests Passed
+    runs-on: ubuntu-latest
+    needs: [rust-tests, typescript-tests, security-audit, integration-tests, fuzz-tests]
+    
+    steps:
+      - name: All tests passed
+        run: echo "All tests passed successfully!"
