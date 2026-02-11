@@ -597,3 +597,77 @@ ERC 8004, ERC_8004, ERC.8004, EIP 8004, EIP_8004, EIP.8004, erc-8004, erc8004, e
 *Total Keywords: 5000+*
 *Last Updated: January 29, 2026*
 </details>
+
+
+---
+
+## 🌐 Live HTTP Deployment
+
+**Solana Wallet Toolkit** is deployed and accessible over HTTP via [MCP Streamable HTTP](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) transport — no local installation required.
+
+**Endpoint:**
+```
+https://modelcontextprotocol.name/mcp/solana-wallet-toolkit
+```
+
+### Connect from any MCP Client
+
+Add to your MCP client configuration (Claude Desktop, Cursor, SperaxOS, etc.):
+
+```json
+{
+  "mcpServers": {
+    "solana-wallet-toolkit": {
+      "type": "http",
+      "url": "https://modelcontextprotocol.name/mcp/solana-wallet-toolkit"
+    }
+  }
+}
+```
+
+### Available Tools (4)
+
+| Tool | Description |
+|------|-------------|
+| `get_sol_price` | Current SOL price |
+| `get_solana_defi` | Solana DeFi protocols |
+| `get_price` | Get crypto prices |
+| `search_coins` | Search Solana tokens |
+
+### Example Requests
+
+**Current SOL price:**
+```bash
+curl -X POST https://modelcontextprotocol.name/mcp/solana-wallet-toolkit \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_sol_price","arguments":{}}}'
+```
+
+**Solana DeFi protocols:**
+```bash
+curl -X POST https://modelcontextprotocol.name/mcp/solana-wallet-toolkit \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_solana_defi","arguments":{}}}'
+```
+
+**Get crypto prices:**
+```bash
+curl -X POST https://modelcontextprotocol.name/mcp/solana-wallet-toolkit \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_price","arguments":{"ids":"solana","vs_currencies":"usd"}}}'
+```
+
+### List All Tools
+
+```bash
+curl -X POST https://modelcontextprotocol.name/mcp/solana-wallet-toolkit \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+```
+
+### Also Available On
+
+- **[SperaxOS](https://speraxos.vercel.app)** — Browse and install from the [MCP marketplace](https://speraxos.vercel.app/community/mcp)
+- **All 27 MCP servers** — See the full catalog at [modelcontextprotocol.name](https://modelcontextprotocol.name)
+
+> Powered by [modelcontextprotocol.name](https://modelcontextprotocol.name) — the open MCP HTTP gateway
