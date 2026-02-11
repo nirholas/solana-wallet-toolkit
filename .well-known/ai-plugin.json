@@ -1,0 +1,16 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "solana-wallet-toolkit",
+    "name_for_model": "solana_wallet_toolkit",
+    "description_for_human": "\u2600\ufe0f Solana Development Toolkit \u2692\ufe0fOfficial Solana Labs libraries \ud83d\udd11 Vanity Address Generation \u2014 custom wallet addresses, OG names on the blockchain \ud83d\ude0e Multi-threaded Search \ud83d\udd0d Parallel generation using all CPU cores \ud83d\udca8 Rust & TypeScript, Node.js \u26d3",
+    "description_for_model": "\u2600\ufe0f Solana Development Toolkit \u2692\ufe0fOfficial Solana Labs libraries \ud83d\udd11 Vanity Address Generation \u2014 custom wallet addresses, OG names on the blockchain \ud83d\ude0e Multi-threaded Search \ud83d\udd0d Parallel generation using all CPU cores \ud83d\udca8 Rust & TypeScript, Node.js \u26d3",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "none"
+    },
+    "logo_url": "https://github.com/nirholas.png",
+    "contact_email": "nirholas@users.noreply.github.com",
+    "legal_info_url": "https://github.com/nirholas/solana-wallet-toolkit/blob/main/LICENSE"
+}

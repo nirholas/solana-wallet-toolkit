@@ -150,3 +150,14 @@ Approved official dependencies:
 - Shell: solana-keygen CLI
 
 DO NOT add: web3.py, solders, or any third-party crypto libraries.
+
+## Repository
+
+- URL: https://github.com/nirholas/solana-wallet-toolkit
+- Language: TypeScript
+- License: MIT
+- Author: nirholas
+
+## Contributing
+
+Contributions are welcome. See CONTRIBUTING.md for guidelines.

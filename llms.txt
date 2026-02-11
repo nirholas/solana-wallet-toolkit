@@ -74,3 +74,9 @@ Difficulty estimates:
 3. RNG quality verification
 4. No network calls (fully offline)
 5. Auditable open source code
+
+## Links
+
+- Repository: https://github.com/nirholas/solana-wallet-toolkit
+- Author: https://github.com/nirholas
+- Full documentation: https://raw.githubusercontent.com/nirholas/solana-wallet-toolkit/main/llms-full.txt
