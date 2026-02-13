@@ -43,6 +43,7 @@ yarn-error.log*
 !server.json
 !website/package.json
 !website/tsconfig.json
+!website/public/manifest.json
 
 # Test outputs
 *.tmp
