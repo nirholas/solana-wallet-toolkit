@@ -39,6 +39,10 @@ yarn-error.log*
 !typescript/tsconfig.json
 !typescript/tsconfig.test.json
 !typescript/jest.config.js
+!vercel.json
+!server.json
+!website/package.json
+!website/tsconfig.json
 
 # Test outputs
 *.tmp
