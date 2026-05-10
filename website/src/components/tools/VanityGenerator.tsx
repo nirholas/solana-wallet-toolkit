@@ -1,15 +1,18 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
-import { Keypair } from '@solana/web3.js';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { isValidBase58, formatNumber } from '@/lib/utils';
 import { ResultField } from './GenerateWallet';
 import { ExplorerLink } from './ExplorerLink';
+import type { WorkerMessage } from '@/workers/vanity-worker';
+
+const MAX_THREADS = typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency || 4) : 4;
 
 export function VanityGenerator() {
   const [prefix, setPrefix] = useState('');
   const [suffix, setSuffix] = useState('');
   const [ignoreCase, setIgnoreCase] = useState(false);
+  const [threadCount, setThreadCount] = useState(MAX_THREADS);
   const [running, setRunning] = useState(false);
   const [status, setStatus] = useState('');
   const [result, setResult] = useState<{
@@ -17,88 +20,89 @@ export function VanityGenerator() {
     secretKey: string;
   } | null>(null);
 
-  const runningRef = useRef(false);
+  const workersRef = useRef<Worker[]>([]);
+  // Per-worker attempt counts for aggregated progress
+  const attemptsRef = useRef<number[]>([]);
+  const ratesRef = useRef<number[]>([]);
+  const startTimeRef = useRef<number>(0);
 
-  const matchesPattern = useCallback(
-    (address: string, pre: string, suf: string, ci: boolean) => {
-      let addr = address;
-      let p = pre;
-      let s = suf;
-      if (ci) {
-        addr = addr.toLowerCase();
-        p = p.toLowerCase();
-        s = s.toLowerCase();
-      }
-      if (p && !addr.startsWith(p)) return false;
-      if (s && !addr.endsWith(s)) return false;
-      return true;
-    },
-    []
-  );
+  const terminateAll = useCallback(() => {
+    for (const w of workersRef.current) w.terminate();
+    workersRef.current = [];
+    attemptsRef.current = [];
+    ratesRef.current = [];
+  }, []);
+
+  function validate(): string | null {
+    if (!prefix && !suffix) return 'Enter a prefix or suffix';
+    if (prefix && !isValidBase58(prefix)) return 'Prefix contains invalid Base58 characters';
+    if (suffix && !isValidBase58(suffix)) return 'Suffix contains invalid Base58 characters';
+    return null;
+  }
 
   function start() {
     if (running) return;
-    if (!prefix && !suffix) {
-      setStatus('Please enter a prefix or suffix');
-      return;
-    }
-    if (prefix && !isValidBase58(prefix)) {
-      setStatus('Prefix contains invalid Base58 characters');
-      return;
-    }
-    if (suffix && !isValidBase58(suffix)) {
-      setStatus('Suffix contains invalid Base58 characters');
-      return;
-    }
+    const err = validate();
+    if (err) { setStatus(err); return; }
 
     setRunning(true);
     setResult(null);
-    runningRef.current = true;
+    setStatus(`Starting ${threadCount} thread${threadCount > 1 ? 's' : ''}...`);
+    startTimeRef.current = performance.now();
+    attemptsRef.current = new Array(threadCount).fill(0);
+    ratesRef.current = new Array(threadCount).fill(0);
 
-    const startTime = performance.now();
-    let attempts = 0;
-    const batchSize = 100;
+    const workers: Worker[] = [];
 
-    function search() {
-      if (!runningRef.current) {
-        setRunning(false);
-        return;
-      }
+    for (let i = 0; i < threadCount; i++) {
+      const idx = i;
+      const worker = new Worker(
+        new URL('../../workers/vanity-worker.ts', import.meta.url)
+      );
 
-      for (let i = 0; i < batchSize; i++) {
-        attempts++;
-        const keypair = Keypair.generate();
-        const address = keypair.publicKey.toBase58();
+      worker.onmessage = (e: MessageEvent<WorkerMessage>) => {
+        const msg = e.data;
 
-        if (matchesPattern(address, prefix, suffix, ignoreCase)) {
-          runningRef.current = false;
-          setRunning(false);
-          const elapsed = (performance.now() - startTime) / 1000;
-          const rate = Math.round(attempts / elapsed);
+        if (msg.type === 'progress') {
+          attemptsRef.current[idx] = msg.attempts;
+          ratesRef.current[idx] = msg.rate;
+          const totalAttempts = attemptsRef.current.reduce((a, b) => a + b, 0);
+          const totalRate = ratesRef.current.reduce((a, b) => a + b, 0);
+          const elapsed = (performance.now() - startTimeRef.current) / 1000;
           setStatus(
-            `✅ Found in ${formatNumber(attempts)} attempts (${elapsed.toFixed(2)}s, ${formatNumber(rate)}/sec)`
+            `Mining on ${threadCount} thread${threadCount > 1 ? 's' : ''}... ${formatNumber(totalAttempts)} attempts (${elapsed.toFixed(1)}s, ~${formatNumber(totalRate)}/sec)`
+          );
+        }
+
+        if (msg.type === 'result') {
+          terminateAll();
+          setRunning(false);
+          const totalAttempts = attemptsRef.current.reduce((a, b) => a + b, 0) + msg.attempts;
+          const elapsed = (performance.now() - startTimeRef.current) / 1000;
+          const totalRate = Math.round(totalAttempts / elapsed);
+          setStatus(
+            `Found in ${formatNumber(totalAttempts)} attempts across ${threadCount} thread${threadCount > 1 ? 's' : ''} (${elapsed.toFixed(2)}s, ${formatNumber(totalRate)}/sec)`
           );
           setResult({
-            address,
-            secretKey: JSON.stringify(Array.from(keypair.secretKey)),
+            address: msg.address,
+            secretKey: JSON.stringify(msg.secretKey),
           });
-          return;
         }
-      }
+      };
 
-      const elapsed = (performance.now() - startTime) / 1000;
-      const rate = Math.round(attempts / elapsed);
-      setStatus(
-        `Mining... ${formatNumber(attempts)} attempts (${elapsed.toFixed(1)}s, ~${formatNumber(rate)}/sec)`
-      );
-      setTimeout(search, 0);
+      worker.onerror = (e) => {
+        console.error('Worker error', e);
+      };
+
+      worker.postMessage({ prefix, suffix, ignoreCase });
+      workers.push(worker);
     }
 
-    setTimeout(search, 10);
+    workersRef.current = workers;
   }
 
   function stop() {
-    runningRef.current = false;
+    terminateAll();
     setRunning(false);
     setStatus('Stopped');
   }
@@ -115,6 +119,9 @@ export function VanityGenerator() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
+
+  // Clean up workers if component unmounts while running
+  useEffect(() => () => terminateAll(), [terminateAll]);
 
   return (
     <div className="space-y-6">
@@ -139,7 +146,8 @@ export function VanityGenerator() {
             onChange={(e) => setPrefix(e.target.value)}
             placeholder="e.g., So1"
             maxLength={6}
-            className="w-full px-3 py-2 bg-dark-800 border border-border rounded font-mono text-sm text-white placeholder:text-muted"
+            disabled={running}
+            className="w-full px-3 py-2 bg-dark-800 border border-border rounded font-mono text-sm text-white placeholder:text-muted disabled:opacity-50"
           />
         </div>
         <div>
@@ -152,7 +160,8 @@ export function VanityGenerator() {
             onChange={(e) => setSuffix(e.target.value)}
             placeholder="e.g., xyz"
             maxLength={6}
-            className="w-full px-3 py-2 bg-dark-800 border border-border rounded font-mono text-sm text-white placeholder:text-muted"
+            disabled={running}
+            className="w-full px-3 py-2 bg-dark-800 border border-border rounded font-mono text-sm text-white placeholder:text-muted disabled:opacity-50"
           />
         </div>
       </div>
@@ -162,10 +171,33 @@ export function VanityGenerator() {
           type="checkbox"
           checked={ignoreCase}
           onChange={(e) => setIgnoreCase(e.target.checked)}
+          disabled={running}
           className="accent-solana"
         />
         Case-insensitive matching
       </label>
+
+      <div>
+        <label className="flex items-center justify-between text-xs text-muted uppercase tracking-wide mb-2">
+          <span>Threads</span>
+          <span className="font-mono text-white normal-case tracking-normal">
+            {threadCount} / {MAX_THREADS} logical CPUs
+          </span>
+        </label>
+        <input
+          type="range"
+          min={1}
+          max={MAX_THREADS}
+          value={threadCount}
+          onChange={(e) => setThreadCount(Number(e.target.value))}
+          disabled={running}
+          className="w-full accent-solana disabled:opacity-50"
+        />
+        <div className="flex justify-between text-xs text-muted mt-1">
+          <span>1</span>
+          <span>{MAX_THREADS}</span>
+        </div>
+      </div>
 
       <div className="flex gap-2">
         <button
@@ -173,18 +205,19 @@ export function VanityGenerator() {
           disabled={running}
           className="px-5 py-2.5 bg-white text-black font-semibold text-sm rounded hover:bg-white/90 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {running ? 'Mining...' : 'Start Mining'}
+          {running ? `Mining (${threadCount}t)...` : 'Start Mining'}
         </button>
         <button
           onClick={stop}
-          className="px-5 py-2.5 border border-border text-white font-semibold text-sm rounded hover:bg-dark-700 transition-colors"
+          disabled={!running}
+          className="px-5 py-2.5 border border-border text-white font-semibold text-sm rounded hover:bg-dark-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Stop
         </button>
       </div>
 
       {status && (
-        <p className={`text-sm ${status.startsWith('✅') ? 'text-solana-green' : 'text-muted-foreground'}`}>
+        <p className={`text-sm ${status.startsWith('Found') ? 'text-solana-green' : 'text-muted-foreground'}`}>
           {status}
         </p>
       )}
