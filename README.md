@@ -2,7 +2,6 @@
  
 [![Rust](https://img.shields.io/badge/rust-stable-orange.svg)](https://www.rust-lang.org/)
 [![TypeScript](https://img.shields.io/badge/typescript-5.x-blue.svg)](https://www.typescriptlang.org/) 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Solana](https://img.shields.io/badge/Solana-Official%20SDK-9945FF.svg)](https://solana.com/)
 
 > **Secure, auditable toolkit for Solana wallet generation and vanity addresses — using only official Solana Labs libraries.**
@@ -597,7 +596,6 @@ ERC 8004, ERC_8004, ERC.8004, EIP 8004, EIP_8004, EIP.8004, erc-8004, erc8004, e
 *Total Keywords: 5000+*
 *Last Updated: January 29, 2026*
 </details>
-
 
 ---
 
