@@ -8,7 +8,7 @@ authors:
     name: nirholas
 repository-code: "https://github.com/nirholas/solana-wallet-toolkit"
 url: "https://github.com/nirholas/solana-wallet-toolkit"
-license: MIT
+license-url: "https://github.com/nirholas/solana-wallet-toolkit/blob/main/LICENSE"
 version: "1.0.0"
 date-released: "2026-02-11"
 keywords:

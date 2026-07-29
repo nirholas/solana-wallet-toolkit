@@ -3,7 +3,7 @@
   "name": "io.github.nirholas/solana-wallet-toolkit",
   "title": "Solana Wallet Toolkit MCP",
   "description": "Complete Solana wallet toolkit with vanity address generation, key management, and transaction building",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "authors": [
     {
       "name": "nich",
@@ -21,8 +21,8 @@
   },
   "icons": [
     {
-      "url": "https://raw.githubusercontent.com/nirholas/solana-wallet-toolkit/main/assets/milady.svg",
-      "type": "svg"
+      "url": "https://raw.githubusercontent.com/nirholas/solana-wallet-toolkit/main/website/public/icon-512.png",
+      "type": "image/png"
     }
   ],
   "packages": [
