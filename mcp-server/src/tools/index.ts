@@ -24,7 +24,7 @@ export async function handleToolCall(
   name: string,
   args: Record<string, unknown>,
   state: ServerState
-): Promise<CallToolResult> {
+): Promise<ToolResult> {
   switch (name) {
     case 'generate_keypair':
       return handleGenerateKeypair(args, state);
@@ -59,7 +59,7 @@ const GenerateKeypairSchema = z.object({
 async function handleGenerateKeypair(
   args: Record<string, unknown>,
   state: ServerState
-): Promise<CallToolResult> {
+): Promise<ToolResult> {
   const parsed = GenerateKeypairSchema.safeParse(args);
   if (!parsed.success) {
     return {

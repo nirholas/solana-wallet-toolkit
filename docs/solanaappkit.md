@@ -272,7 +272,7 @@ The kit consists of two main components that work together seamlessly:
   </Step>
 
   <Step title="Detailed Setup">
-    For detailed setup instructions, continue to the [Setup Guide](/docs/setup)
+    For detailed setup instructions, continue to the [Setup Guide](https://docs.solanaappkit.com/docs/setup)
   </Step>
 </Steps>
 
@@ -915,9 +915,9 @@ function TokenSwapInterface() {
 
 For detailed API documentation, see:
 
-* [Token Service Reference](/docs/references/modules/data-module/services)
-* [Hooks Reference](/docs/references/modules/data-module/hooks)
-* [Types Reference](/docs/references/modules/data-module/types)
+* [Token Service Reference](https://docs.solanaappkit.com/docs/references/modules/data-module/services)
+* [Hooks Reference](https://docs.solanaappkit.com/docs/references/modules/data-module/hooks)
+* [Types Reference](https://docs.solanaappkit.com/docs/references/modules/data-module/types)
 
 ***
 
@@ -1865,9 +1865,9 @@ function MeteoraBased() {
 
 For detailed API documentation, see:
 
-* [Meteora Service Reference](/docs/references/modules/meteora/services)
-* [Components Reference](/docs/references/modules/meteora/components)
-* [Types Reference](/docs/references/modules/meteora/types)
+* [Meteora Service Reference](https://docs.solanaappkit.com/docs/references/modules/meteora/services)
+* [Components Reference](https://docs.solanaappkit.com/docs/references/modules/meteora/components)
+* [Types Reference](https://docs.solanaappkit.com/docs/references/modules/meteora/types)
 
 ***
 
@@ -2543,9 +2543,9 @@ function RobustMoonPayWidget() {
 
 For detailed API documentation, see:
 
-* [MoonPay Components Reference](/docs/references/modules/moonpay/components)
-* [Services Reference](/docs/references/modules/moonpay/services)
-* [Types Reference](/docs/references/modules/moonpay/types)
+* [MoonPay Components Reference](https://docs.solanaappkit.com/docs/references/modules/moonpay/components)
+* [Services Reference](https://docs.solanaappkit.com/docs/references/modules/moonpay/services)
+* [Types Reference](https://docs.solanaappkit.com/docs/references/modules/moonpay/types)
 
 ***
 
@@ -3323,10 +3323,10 @@ function RobustNFTOperation() {
 
 For detailed API documentation, see:
 
-* [NFT Components Reference](/docs/references/modules/nft/components)
-* [Services Reference](/docs/references/modules/nft/services)
-* [Hooks Reference](/docs/references/modules/nft/hooks)
-* [Types Reference](/docs/references/modules/nft/types)
+* [NFT Components Reference](https://docs.solanaappkit.com/docs/references/modules/nft/components)
+* [Services Reference](https://docs.solanaappkit.com/docs/references/modules/nft/services)
+* [Hooks Reference](https://docs.solanaappkit.com/docs/references/modules/nft/hooks)
+* [Types Reference](https://docs.solanaappkit.com/docs/references/modules/nft/types)
 
 ***
 
@@ -3388,31 +3388,31 @@ The Solana App Kit is built with a modular architecture, allowing you to use onl
 
 ### 🔐 Wallet & Authentication
 
-* **[Embedded Wallets](/docs/modules/wallet-providers)**: Multi-provider wallet connection and management
+* **[Embedded Wallets](https://docs.solanaappkit.com/docs/modules/wallet-providers)**: Multi-provider wallet connection and management
 
 ### 💱 Trading & DeFi
 
-* **[Swap](/docs/modules/swap)**: Token swapping and DEX aggregation
-* **[Pump.fun](/docs/modules/pump-fun)**: Meme token ecosystem
-* **[Raydium](/docs/modules/raydium)**: Advanced AMM features
-* **[Meteora](/docs/modules/meteora)**: Dynamic liquidity protocols
-* **[TokenMill](/docs/modules/token-mill)**: Custom token creation
+* **[Swap](https://docs.solanaappkit.com/docs/modules/swap)**: Token swapping and DEX aggregation
+* **[Pump.fun](https://docs.solanaappkit.com/docs/modules/pump-fun)**: Meme token ecosystem
+* **[Raydium](https://docs.solanaappkit.com/docs/modules/raydium)**: Advanced AMM features
+* **[Meteora](https://docs.solanaappkit.com/docs/modules/meteora)**: Dynamic liquidity protocols
+* **[TokenMill](https://docs.solanaappkit.com/docs/modules/token-mill)**: Custom token creation
 
 ### 🎨 Assets & Media
 
-* **[NFT](/docs/modules/nft)**: Non-fungible token functionality
+* **[NFT](https://docs.solanaappkit.com/docs/modules/nft)**: Non-fungible token functionality
 
 ### 📊 Data & Analytics
 
-* **[Data Module](/docs/modules/data-module)**: Blockchain data and analytics
+* **[Data Module](https://docs.solanaappkit.com/docs/modules/data-module)**: Blockchain data and analytics
 
 ### 💳 Payments
 
-* **[MoonPay](/docs/modules/moonpay)**: Fiat payment processing
+* **[MoonPay](https://docs.solanaappkit.com/docs/modules/moonpay)**: Fiat payment processing
 
 ### 🤖 AI & Automation
 
-* **[Solana Agent Kit](/docs/modules/solana-agent-kit)**: AI-powered interactions
+* **[Solana Agent Kit](https://docs.solanaappkit.com/docs/modules/solana-agent-kit)**: AI-powered interactions
 
 ## Module Architecture
 
@@ -4415,10 +4415,10 @@ function RobustPumpfunOperations() {
 
 For detailed API documentation, see:
 
-* [Pump.fun Components Reference](/docs/references/modules/pump-fun/components)
-* [Services Reference](/docs/references/modules/pump-fun/services)
-* [Hooks Reference](/docs/references/modules/pump-fun/hooks)
-* [Types Reference](/docs/references/modules/pump-fun/types)
+* [Pump.fun Components Reference](https://docs.solanaappkit.com/docs/references/modules/pump-fun/components)
+* [Services Reference](https://docs.solanaappkit.com/docs/references/modules/pump-fun/services)
+* [Hooks Reference](https://docs.solanaappkit.com/docs/references/modules/pump-fun/hooks)
+* [Types Reference](https://docs.solanaappkit.com/docs/references/modules/pump-fun/types)
 
 ***
 
@@ -5249,9 +5249,9 @@ function RobustRaydiumOperations() {
 
 For detailed API documentation, see:
 
-* [Raydium Components Reference](/docs/references/modules/raydium/components)
-* [Services Reference](/docs/references/modules/raydium/services)
-* [Utils Reference](/docs/references/modules/raydium/utils)
+* [Raydium Components Reference](https://docs.solanaappkit.com/docs/references/modules/raydium/components)
+* [Services Reference](https://docs.solanaappkit.com/docs/references/modules/raydium/services)
+* [Utils Reference](https://docs.solanaappkit.com/docs/references/modules/raydium/utils)
 
 ***
 
@@ -6107,9 +6107,9 @@ function SecureAITransactions() {
 
 For detailed API documentation, see:
 
-* [Solana Agent Kit Hooks Reference](/docs/references/modules/solana-agent-kit/hooks)
-* [AI Providers Reference](/docs/references/modules/solana-agent-kit/lib)
-* [Utils Reference](/docs/references/modules/solana-agent-kit/utils)
+* [Solana Agent Kit Hooks Reference](https://docs.solanaappkit.com/docs/references/modules/solana-agent-kit/hooks)
+* [AI Providers Reference](https://docs.solanaappkit.com/docs/references/modules/solana-agent-kit/lib)
+* [Utils Reference](https://docs.solanaappkit.com/docs/references/modules/solana-agent-kit/utils)
 
 ***
 
@@ -7044,9 +7044,9 @@ function useOptimizedQuoting() {
 
 For detailed API documentation, see:
 
-* [Swap Components Reference](/docs/references/modules/swap/components)
-* [Services Reference](/docs/references/modules/swap/services)
-* [Hooks Reference](/docs/references/modules/swap/hooks)
+* [Swap Components Reference](https://docs.solanaappkit.com/docs/references/modules/swap/components)
+* [Services Reference](https://docs.solanaappkit.com/docs/references/modules/swap/services)
+* [Hooks Reference](https://docs.solanaappkit.com/docs/references/modules/swap/hooks)
 
 ***
 
@@ -7116,7 +7116,7 @@ The TokenMill module provides a complete suite of tools for professional token c
 </Steps>
 
 <Note>
-  **Advanced Tokenomics**: TokenMill is designed for sophisticated token engineering. Review the [TokenMill Functions](/docs/functions/tokenmill) documentation for detailed API information.
+  **Advanced Tokenomics**: TokenMill is designed for sophisticated token engineering. Review the [TokenMill Functions](https://docs.solanaappkit.com/docs/functions/tokenmill) documentation for detailed API information.
 </Note>
 
 ## Module Architecture
@@ -7335,7 +7335,7 @@ src/modules/token-mill/
 
 ## TokenMill Service Integration
 
-For detailed service functions, see the [TokenMill Functions documentation](/docs/functions/tokenmill). Here's a quick overview:
+For detailed service functions, see the [TokenMill Functions documentation](https://docs.solanaappkit.com/docs/functions/tokenmill). Here's a quick overview:
 
 <ResponseField name="services" type="object">
   <Expandable title="Market Operations">
@@ -7854,9 +7854,9 @@ function useOptimizedTokenMill() {
 
 For detailed API documentation, see:
 
-* [TokenMill Functions Reference](/docs/functions/tokenmill) - Complete service function documentation
-* [TokenMill Components Reference](/docs/references/modules/token-mill/components)
-* [Types Reference](/docs/references/modules/token-mill/types)
+* [TokenMill Functions Reference](https://docs.solanaappkit.com/docs/functions/tokenmill) - Complete service function documentation
+* [TokenMill Components Reference](https://docs.solanaappkit.com/docs/references/modules/token-mill/components)
+* [Types Reference](https://docs.solanaappkit.com/docs/references/modules/token-mill/types)
 
 ***
 
@@ -8813,10 +8813,10 @@ function useOptimizedWalletLoading() {
 
 For detailed API documentation, see:
 
-* [Wallet Functions Reference](/docs/functions/wallet) - Complete wallet function documentation
-* [Wallet Components Reference](/docs/references/modules/wallet-providers/components)
-* [Services Reference](/docs/references/modules/wallet-providers/services)
-* [Types Reference](/docs/references/modules/wallet-providers/types)
+* [Wallet Functions Reference](https://docs.solanaappkit.com/docs/functions/wallet) - Complete wallet function documentation
+* [Wallet Components Reference](https://docs.solanaappkit.com/docs/references/modules/wallet-providers/components)
+* [Services Reference](https://docs.solanaappkit.com/docs/references/modules/wallet-providers/services)
+* [Types Reference](https://docs.solanaappkit.com/docs/references/modules/wallet-providers/types)
 
 ***
 
@@ -9468,7 +9468,7 @@ This backend server is built with Express.js and TypeScript, offering a robust A
     ```
 
     <Note>
-      Configure all required environment variables in your `.env` file. See the [Configuration](/docs/server/configuration) section for details.
+      Configure all required environment variables in your `.env` file. See the [Configuration](https://docs.solanaappkit.com/docs/server/configuration) section for details.
     </Note>
   </Step>
 
@@ -9616,7 +9616,7 @@ The server follows a modular, service-oriented architecture:
 | `/api/notifications` | Various | Push notifications  |
 
 <Tip>
-  For detailed API documentation, see the [API Reference](/docs/server/endpoints/tokenmill) section.
+  For detailed API documentation, see the [API Reference](https://docs.solanaappkit.com/docs/server/endpoints/tokenmill) section.
 </Tip>
 
 ## Security Measures
@@ -9683,7 +9683,7 @@ The server follows a modular, service-oriented architecture:
 ***
 
 <Info>
-  **Need Help?** Check out our [support channels](/docs/support) or open an issue in the [GitHub repository](https://github.com/SendArcade/solana-app-kit).
+  **Need Help?** Check out our [support channels](https://docs.solanaappkit.com/docs/support) or open an issue in the [GitHub repository](https://github.com/SendArcade/solana-app-kit).
 </Info>
 
 
@@ -9988,7 +9988,7 @@ export type TransactionMode = 'jito' | 'priority';
 ***
 
 <Info>
-  For detailed API documentation and examples, see the [API Reference](/docs/server/endpoints/solana) section.
+  For detailed API documentation and examples, see the [API Reference](https://docs.solanaappkit.com/docs/server/endpoints/solana) section.
 </Info>
 
 

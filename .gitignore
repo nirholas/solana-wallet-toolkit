@@ -39,6 +39,10 @@ yarn-error.log*
 !typescript/tsconfig.json
 !typescript/tsconfig.test.json
 !typescript/jest.config.js
+!typescript/package-lock.json
+!mcp-server/package.json
+!mcp-server/package-lock.json
+!mcp-server/tsconfig.json
 !vercel.json
 !server.json
 !website/package.json

@@ -58,34 +58,44 @@ export interface ServerState {
 }
 
 // Result types
+//
+// These mirror the MCP SDK result shapes. `type`/`text` are required rather
+// than optional so a value of these types is structurally assignable to the
+// SDK's CallToolResult / ReadResourceResult / GetPromptResult; with them
+// optional, TypeScript cannot match the SDK's union and the request handler
+// registrations fail to compile. Every tool, resource and prompt in this
+// server returns text content.
+export interface TextContent {
+  type: 'text';
+  text: string;
+  [key: string]: unknown;
+}
+
 export interface ToolResult {
-  content: Array<{
-    type: 'text' | 'image' | 'resource';
-    text?: string;
-    data?: string;
-    mimeType?: string;
-  }>;
+  content: TextContent[];
   isError?: boolean;
+  [key: string]: unknown;
+}
+
+export interface TextResourceContents {
+  uri: string;
+  mimeType?: string;
+  text: string;
+  [key: string]: unknown;
 }
 
 export interface ResourceResult {
-  contents: Array<{
-    uri: string;
-    mimeType?: string;
-    text?: string;
-    blob?: string;
-  }>;
+  contents: TextResourceContents[];
+  [key: string]: unknown;
 }
 
 export interface PromptResult {
   description?: string;
   messages: Array<{
     role: 'user' | 'assistant';
-    content: {
-      type: 'text' | 'image' | 'resource';
-      text?: string;
-    };
+    content: TextContent;
   }>;
+  [key: string]: unknown;
 }
 
 // Tool call arguments types

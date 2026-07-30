@@ -35,6 +35,20 @@ interface CommandOptions {
 const VERSION = '0.1.0';
 
 /**
+ * Returns the value that follows a flag, or exits with a clear message when the
+ * flag was passed without one. Without this guard a trailing `--prefix` would
+ * silently parse as `undefined` (and `--max-attempts` as `NaN`).
+ */
+function requireValue(flag: string, value: string | undefined): string {
+  if (value === undefined || value.startsWith('-')) {
+    console.error(`Error: ${flag} requires a value.`);
+    console.error(`Run "solana-vanity-ts --help" for usage.`);
+    process.exit(1);
+  }
+  return value;
+}
+
+/**
  * Parses command line arguments using Node's built-in process.argv.
  */
 function parseArgs(): CommandOptions {
@@ -57,12 +71,12 @@ function parseArgs(): CommandOptions {
     switch (arg) {
       case '-p':
       case '--prefix':
-        options.prefix = nextArg;
+        options.prefix = requireValue(arg, nextArg);
         i++;
         break;
       case '-s':
       case '--suffix':
-        options.suffix = nextArg;
+        options.suffix = requireValue(arg, nextArg);
         i++;
         break;
       case '-i':
@@ -71,12 +85,12 @@ function parseArgs(): CommandOptions {
         break;
       case '-o':
       case '--output':
-        options.output = nextArg;
+        options.output = requireValue(arg, nextArg);
         i++;
         break;
       case '-m':
       case '--max-attempts':
-        options.maxAttempts = parseInt(nextArg, 10);
+        options.maxAttempts = parseInt(requireValue(arg, nextArg), 10);
         i++;
         break;
       case '-v':
@@ -103,7 +117,7 @@ function parseArgs(): CommandOptions {
         options.info = true;
         break;
       case 'validate':
-        options.validate = nextArg;
+        options.validate = requireValue(arg, nextArg);
         i++;
         break;
     }

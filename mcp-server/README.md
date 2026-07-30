@@ -13,7 +13,11 @@ A Model Context Protocol (MCP) server that exposes Solana wallet operations to A
 
 ## Installation
 
+Build from a clone of the repository (this server is not published to npm):
+
 ```bash
+git clone https://github.com/nirholas/solana-wallet-toolkit.git
+cd solana-wallet-toolkit/mcp-server
 npm install
 npm run build
 ```
@@ -97,4 +101,4 @@ This server implements MCP protocol version `2024-11-05`.
 
 ## License
 
-MIT
+All rights reserved. See the [LICENSE](../LICENSE) file at the repository root.
