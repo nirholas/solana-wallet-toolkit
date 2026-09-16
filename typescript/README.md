@@ -24,14 +24,19 @@ This tool generates **private keys** for cryptocurrency wallets. Please understa
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/hippopotomonstrosesquippedaliophobi/solana-vanity-address.git
-cd solana-vanity-address/typescript
+# Library
+npm install solana-vanity-ts
 
-# Install dependencies
+# CLI, without installing
+npx solana-vanity-ts --prefix So
+```
+
+From source:
+
+```bash
+git clone https://github.com/nirholas/solana-wallet-toolkit.git
+cd solana-wallet-toolkit/typescript
 npm install
-
-# Build the project
 npm run build
 ```
 

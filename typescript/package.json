@@ -2,8 +2,15 @@
   "name": "solana-vanity-ts",
   "version": "0.1.0",
   "description": "TypeScript Solana vanity address generator - Educational implementation using @solana/web3.js",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/lib/index.d.ts",
+      "default": "./dist/lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "bin": {
     "solana-vanity-ts": "./dist/index.js"
   },
@@ -32,7 +39,7 @@
     "web3"
   ],
   "author": "",
-  "license": "SEE LICENSE IN ../LICENSE",
+  "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
     "url": "https://github.com/nirholas/solana-wallet-toolkit"
