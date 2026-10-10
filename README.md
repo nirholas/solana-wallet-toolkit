@@ -479,3 +479,26 @@ Full documentation site: **https://nirholas.github.io/solana-wallet-toolkit/**
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=nirholas/solana-wallet-toolkit&type=Date)](https://www.star-history.com/#nirholas/solana-wallet-toolkit&Date)
+
+<!-- three.ws:growth -->
+## Support the project
+
+If solana-wallet-toolkit saves you time, **[star it on GitHub](https://github.com/nirholas/solana-wallet-toolkit)**. Stars are how other developers and AI agents find the repositories worth trusting, and they cost you one click.
+
+Know someone who would use it? [Post on X](https://twitter.com/intent/tweet?text=solana-wallet-toolkit%3A%20%E2%98%80%EF%B8%8F%20Solana%20Development%20Toolkit%20%E2%9A%92%EF%B8%8FOfficial%20Solana%20Labs%20libraries%20%F0%9F%94%91%20Vanity%20Address%20Generation%3A%20custom&url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-wallet-toolkit) · [Share on Bluesky](https://bsky.app/intent/compose?text=solana-wallet-toolkit%3A%20%E2%98%80%EF%B8%8F%20Solana%20Development%20Toolkit%20%E2%9A%92%EF%B8%8FOfficial%20Solana%20Labs%20libraries%20%F0%9F%94%91%20Vanity%20Address%20Generation%3A%20custom%20https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-wallet-toolkit) · [Share on LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-wallet-toolkit) · [Submit to Hacker News](https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-wallet-toolkit&t=solana-wallet-toolkit%3A%20%E2%98%80%EF%B8%8F%20Solana%20Development%20Toolkit%20%E2%9A%92%EF%B8%8FOfficial%20Solana%20Labs%20libraries%20%F0%9F%94%91%20Vanity%20Address%20Generation%3A%20custom) · [Share on Reddit](https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-wallet-toolkit&title=solana-wallet-toolkit%3A%20%E2%98%80%EF%B8%8F%20Solana%20Development%20Toolkit%20%E2%9A%92%EF%B8%8FOfficial%20Solana%20Labs%20libraries%20%F0%9F%94%91%20Vanity%20Address%20Generation%3A%20custom)
+
+## Built for AI agents too
+
+Coding agents and LLM tooling can read this repo directly: [AGENTS.md](./AGENTS.md), [llms.txt](./llms.txt), [llms-full.txt](./llms-full.txt). Point an agent at `https://github.com/nirholas/solana-wallet-toolkit` and it has the context it needs.
+
+## More from the same author
+
+- [All repositories by nirholas](https://github.com/nirholas/nirholas#readme): the full catalog, grouped by topic
+- [three.ws](https://three.ws): the platform for 3D AI agents with Solana wallets, a skill marketplace and x402 payments
+- Questions or ideas: [open an issue](https://github.com/nirholas/solana-wallet-toolkit/issues) or [start a discussion](https://github.com/nirholas/solana-wallet-toolkit/discussions)
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=nirholas/solana-wallet-toolkit)](https://github.com/nirholas/solana-wallet-toolkit/graphs/contributors)
+
+<!-- /three.ws:growth -->
