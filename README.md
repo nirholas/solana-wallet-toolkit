@@ -471,7 +471,7 @@ curl -X POST https://modelcontextprotocol.name/mcp/solana-wallet-toolkit \
 
 ## Documentation
 
-Full documentation site: **https://nirholas.github.io/solana-wallet-toolkit/**
+Live site: **https://solana-wallet-toolkit.modelcontextprotocol.name** · Documentation: **https://solana-wallet-toolkit.modelcontextprotocol.name/docs/** (deployment steps in [docs/deployment.md](docs/deployment.md))
 
 - [Getting started](docs/getting-started.md) covers install and first run.
 - [Examples](docs/examples.md) has copy-paste snippets.
