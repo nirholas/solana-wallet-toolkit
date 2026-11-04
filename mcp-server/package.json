@@ -48,5 +48,10 @@
   "files": [
     "dist",
     "README.md"
-  ]
+  ],
+  "overrides": {
+    "proxy-addr@^2": "^2.0.8",
+    "uuid@^8": "^11.1.1",
+    "jayson@^4": "^5.0.0"
+  }
 }
