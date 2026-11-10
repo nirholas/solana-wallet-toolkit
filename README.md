@@ -502,3 +502,13 @@ Coding agents and LLM tooling can read this repo directly: [AGENTS.md](./AGENTS.
 [![Contributors](https://contrib.rocks/image?repo=nirholas/solana-wallet-toolkit)](https://github.com/nirholas/solana-wallet-toolkit/graphs/contributors)
 
 <!-- /three.ws:growth -->
+
+<!-- nirholas:watermark -->
+
+---
+
+<p align="center">
+  Built by <a href="https://github.com/nirholas"><b>nirholas</b></a> · <a href="https://x.com/nichxbt">@nichxbt</a> · <a href="https://github.com/nirholas">github.com/nirholas</a>
+</p>
+
+<!-- /nirholas:watermark -->
