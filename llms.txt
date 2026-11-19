@@ -73,7 +73,7 @@ Difficulty estimates:
 2. File permissions 0600
 3. RNG quality verification
 4. No network calls (fully offline)
-5. Auditable open source code
+5. Auditable, publicly available source code
 
 ## Links
 

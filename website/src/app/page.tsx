@@ -50,7 +50,7 @@ const stats = [
   { label: 'Implementations', value: '3', detail: 'Rust · TypeScript · Shell' },
   { label: 'Libraries', value: '100%', detail: 'Official Solana Labs' },
   { label: 'Network Calls', value: '0', detail: 'Fully offline capable' },
-  { label: 'License', value: 'MIT', detail: 'Open source' },
+  { label: 'License', value: 'Proprietary', detail: 'Source available' },
 ];
 
 const fadeUp = {

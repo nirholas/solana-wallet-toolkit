@@ -222,7 +222,7 @@ chmod +x *.sh
                 ['Solana CLI Compatible', '✅ Yes (64-byte JSON)', '✅ Yes', 'Varies'],
                 ['Browser-based', '✅ This website', '❌ No', 'Some (risky)'],
                 ['MCP Server', '✅ For AI agents', '❌ No', '❌ No'],
-                ['Open Source', '✅ MIT License', '✅ Apache 2.0', 'Varies'],
+                ['Source Available', '✅ Proprietary license', '✅ Apache 2.0', 'Varies'],
                 ['Memory Zeroization', '✅ zeroize crate', '✅ Yes', '❌ Rarely'],
               ].map(([feature, us, keygen, others]) => (
                 <tr key={feature} className="border-t border-border/50">

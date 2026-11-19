@@ -98,7 +98,7 @@ TypeScript:
 ✅ File permissions set to 0600
 ✅ No network calls (fully offline capable)
 ✅ RNG quality verification
-✅ Open source and auditable
+✅ Source available and auditable
 
 ## Common Operations
 
@@ -155,7 +155,7 @@ DO NOT add: web3.py, solders, or any third-party crypto libraries.
 
 - URL: https://github.com/nirholas/solana-wallet-toolkit
 - Language: TypeScript
-- License: MIT
+- License: Proprietary (all rights reserved, see LICENSE)
 - Author: nirholas
 
 ## Contributing

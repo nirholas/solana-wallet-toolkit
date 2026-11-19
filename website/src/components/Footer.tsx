@@ -26,7 +26,7 @@ export function Footer() {
               GitHub
             </a>
             <span className="text-border">|</span>
-            <span>MIT License</span>
+            <span>All Rights Reserved</span>
             <span className="text-border">|</span>
             <a
               href="https://x.com/nichxbt"

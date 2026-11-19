@@ -62,7 +62,7 @@ These standard libraries handle CLI, parallelism, and file I/O — **none touch 
 ### Security Best Practices
 
 1. **Run offline** — Disconnect from the internet when generating wallets
-2. **Audit the code** — It's open source, verify it yourself
+2. **Audit the code** — The source is public, verify it yourself
 3. **Never share private keys or keypair files**
 4. **Store secrets securely** — Use hardware wallets for significant funds
 5. **Verify file permissions** — Keypair files should be `0600` (owner read/write only)
@@ -386,7 +386,7 @@ All rights reserved. See [LICENSE](LICENSE) for details.
 
 ### 🏷️ Keywords
 
-`solana` `wallet` `rust` `typescript` `cli` `vanity-address` `keypair` `ed25519` `private-key` `address-generator` `solana-sdk` `web3js` `cryptocurrency` `blockchain` `cold-storage` `offline-wallet` `air-gapped` `open-source` `educational`
+`solana` `wallet` `rust` `typescript` `cli` `vanity-address` `keypair` `ed25519` `private-key` `address-generator` `solana-sdk` `web3js` `cryptocurrency` `blockchain` `cold-storage` `offline-wallet` `air-gapped` `source-available` `educational`
 
 ---
 
