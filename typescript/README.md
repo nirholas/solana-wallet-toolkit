@@ -310,7 +310,7 @@ Longer patterns take exponentially longer. Consider:
 
 ## License
 
-MIT License - see [LICENSE](../LICENSE) for details.
+Proprietary. See the repository [LICENSE](../LICENSE).
 
 ## Contributing
 
